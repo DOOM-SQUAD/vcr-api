@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ww2.httpbin.org/get
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 29 Nov 2015 06:50:08 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '262'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+    body:
+      encoding: UTF-8
+      string: "{\n  \"args\": {}, \n  \"headers\": {\n    \"Accept\": \"*/*\", \n
+        \   \"Accept-Encoding\": \"gzip;q=1.0,deflate;q=0.6,identity;q=0.3\", \n    \"Host\":
+        \"ww2.httpbin.org\", \n    \"User-Agent\": \"Faraday v0.8.9\"\n  }, \n  \"origin\":
+        \"73.37.5.121\", \n  \"url\": \"http://ww2.httpbin.org/get\"\n}\n"
+    http_version: 
+  recorded_at: Sun, 29 Nov 2015 06:50:07 GMT
+recorded_with: VCR 2.9.3

@@ -4,7 +4,9 @@ RSpec.describe VCR::API::CassetteName do
   let(:request) { VCR::Request.new(:get, 'http://localhost:3000/get?blah=blue&bluh=blah',
                                     nil, 'Accept' => 'application/json') }
 
-  subject { described_class.new(:test_api, request) }
+  let(:test_api) { VCR::API.new(:test_api, 'http://localhost:3000') }
+
+  subject { described_class.new(test_api, request) }
 
   describe '#name' do
     it 'includes standard path' do

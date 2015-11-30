@@ -18,8 +18,8 @@ the entire cluster, `vcr-api` aims to at least make it less painful.
 3) It keeps track of how often the API requests are recorded and can
 transparently re-record them.
 
-(3 is already support by VCR, but only at that the cassette level.
-VCR-API organizes cassettes along API lines, so can expire cassettes along
+(3 is already supported by VCR, but only at that the cassette level.
+VCR-API organizes cassettes along API lines, so you can expire cassettes along
 service boundaries.)
 
 ## Installation
@@ -40,7 +40,7 @@ Or install it yourself as:
 
 ## Usage
 
-Within your spec_helper.rb or env.rb file, define APIs, then enable those
+Within your `spec_helper.rb` or `env.rb` file, define APIs, then enable those
 APIs using Rspec or Cucumber metadata.
 
 The simplest possible configuration.
@@ -50,7 +50,7 @@ VCR.configure do |c|
   c.add_api :my_service_name, 'locahost:3002'
 end
 
-RSpec.describe SomeClass, :my_service_name do
+RSpec.describe SomeClass, apis: [:my_service_name] do
   it 'will record requests to localhost:3002'
 end
 ```
@@ -69,13 +69,17 @@ For testing services where you control all of the instance, you probably want
 the exact opposite of that, which is for APIs to be re-recorded whenever a
 running instance is present.  Just pass "expires: true" flag to your API
 definition.  For other situations you can pass a proc to expires, which will be
-used to determine if the API should be re-recorded.
+used to determine if the API should be re-recorded.  If you are testing one of
+these services, you are probably running your auxilaries on localhost, or
+proxying them _through_ localhost - which leads us into the next paragraph.
 
 If you are recording feature specs using selenium or phantomjs, you may have
 noticed that those services communicate over HTTP with a localhost based
-server. VCR-API will automatically detect and exclude communication with
-Selenium, PhantomJS, etc unless you specifically enable those recordings.
-`c.record_feature_interactions = true`
+server. That interferes with the common setup of having multiple services
+running (or not running) in your local environment for settings.
+VCR-API can automatically detect and exclude communication with Selenium,
+PhantomJS, etc if you specifically disable those recordings.  Just set
+`c.record_feature_interactions = false`
 
 ## Contributing
 

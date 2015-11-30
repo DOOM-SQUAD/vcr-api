@@ -1,0 +1,30 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://localhost:9293/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - WEBrick/1.3.1 (Ruby/2.1.6/2015-04-13)
+      date:
+      - Mon, 26 Oct 2015 06:34:01 GMT
+      content-length:
+      - '65'
+      connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: <html><head></head><body><a href="#">Click here</a></body></html>
+    http_version: 
+  recorded_at: Mon, 26 Oct 2015 06:34:01 GMT
+recorded_with: VCR 2.9.3

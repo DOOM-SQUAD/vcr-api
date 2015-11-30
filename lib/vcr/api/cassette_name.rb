@@ -1,12 +1,12 @@
 module VCR
   class API
     class CassetteName
-      attr_reader :vcr_request, :service_name, :request_uri
+      attr_reader :vcr_request, :service, :request_uri
 
-      def initialize(service_name, vcr_request)
+      def initialize(service, vcr_request)
         @vcr_request = vcr_request
         @request_uri = URI.parse(vcr_request.uri)
-        @service_name = service_name
+        @service = service
       end
 
       def name
@@ -14,7 +14,7 @@ module VCR
       end
 
       def prefix
-        "api/#{service_name}"
+        "api/#{service.service_name}"
       end
 
       def host

@@ -1,52 +1,40 @@
 require "vcr/api/version"
+require 'forwardable'
 
 require_relative 'api/configuration'
 require_relative 'api/request_handler'
 require_relative 'api/matcher'
+require_relative 'api/rspec_metadata'
 require_relative 'api/registry'
 require_relative 'api/cassette_name'
+require_relative 'api/uri_matcher'
+require_relative 'api/expiration_matcher'
 
 module VCR
   class API
-    class URIMatcher
-      attr_reader :endpoint, :request
+    extend Forwardable
 
-      def initialize(endpoint, request)
-        @endpoint = endpoint
-        @request = request
-      end
+    attr_reader :endpoint, :service_name, :expires, :match_on
 
-      def host
-        endpoint.host == request.host
-      end
-
-      def port
-        endpoint.port == request.port
-      end
-
-      def protocol
-        endpoint.scheme == request.scheme
-      end
-
-      def url_prefix
-        request.path.start_with?(endpoint.path)
-      end
-    end
-
-    attr_reader :endpoint, :service_name
+    def_delegators :endpoint, :host, :port, :scheme, :path
 
     def initialize(service_name, address, **options)
       @endpoint = URI.parse(address)
       @service_name = service_name
-      @expires = options.fetch(:expires, false)
+      @expires = options.fetch(:expires, false) || options.fetch(:expired, false)
       @match_on = options.fetch(:matches, []) + [:host]
     end
 
     def fulfills_request?(vcr_request)
-      request = URI.parse(vcr_request.uri)
-      matcher = VCR::API::URIMatcher.new(endpoint, request)
+      VCR::API::URIMatcher.new(self, vcr_request).matches?
+    end
 
-      @match_on.all? { |dimension| matcher.send(dimension) }
+    def request_expired?(vcr_request)
+      VCR::API::ExpirationMatcher.new(self, vcr_request).expired?
+    end
+
+    def path_for_request(vcr_request)
+      VCR::API::CassetteName.new(self, vcr_request).name
     end
   end
 end

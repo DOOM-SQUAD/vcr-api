@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://ww2.httpbin.org/ip
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - nginx
+      date:
+      - Sun, 29 Nov 2015 06:50:10 GMT
+      content-type:
+      - application/json
+      content-length:
+      - '30'
+      connection:
+      - close
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "origin": "73.37.5.121"
+        }
+    http_version: 
+  recorded_at: Sun, 29 Nov 2015 06:50:09 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,110 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://jsonplaceholder.typicode.com/posts/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - Cowboy
+      connection:
+      - close
+      x-powered-by:
+      - Express
+      vary:
+      - Origin
+      access-control-allow-credentials:
+      - 'true'
+      cache-control:
+      - no-cache
+      pragma:
+      - no-cache
+      expires:
+      - "-1"
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '292'
+      etag:
+      - W/"124-yv65LoT2uMHrpn06wNpAcQ"
+      date:
+      - Sun, 29 Nov 2015 06:50:11 GMT
+      via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "userId": 1,
+          "id": 1,
+          "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+          "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+        }
+    http_version: 
+  recorded_at: Sun, 29 Nov 2015 06:50:11 GMT
+- request:
+    method: get
+    uri: http://jsonplaceholder.typicode.com/comments/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+  response:
+    status:
+      code: 200
+      message: 
+    headers:
+      server:
+      - Cowboy
+      connection:
+      - close
+      x-powered-by:
+      - Express
+      vary:
+      - Origin
+      access-control-allow-credentials:
+      - 'true'
+      cache-control:
+      - no-cache
+      pragma:
+      - no-cache
+      expires:
+      - "-1"
+      x-content-type-options:
+      - nosniff
+      content-type:
+      - application/json; charset=utf-8
+      content-length:
+      - '268'
+      etag:
+      - W/"10c-2mH3SLRRhpfGIVaFOD9gMA"
+      date:
+      - Sun, 29 Nov 2015 06:50:12 GMT
+      via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "postId": 1,
+          "id": 1,
+          "name": "id labore ex et quam laborum",
+          "email": "Eliseo@gardner.biz",
+          "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+        }
+    http_version: 
+  recorded_at: Sun, 29 Nov 2015 06:50:11 GMT
+recorded_with: VCR 2.9.3
